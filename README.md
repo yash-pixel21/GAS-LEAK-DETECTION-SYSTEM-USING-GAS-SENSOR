@@ -11,9 +11,7 @@
 	
 ## Circuit Diagram:
 
- 
-
-
+ <img width="1444" height="775" alt="Screenshot 2025-09-19 202432" src="https://github.com/user-attachments/assets/46f9a5ae-ce54-4233-90be-f45645f63eed" />
 
 
 ## Theory :
@@ -57,10 +55,47 @@ Step 7: Save Your Work
 •	Save the Circuit: Click "Save" to keep your circuit design and code for future use.
 
 ## Program:
+```
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+int gas_lvl=0;
+
+void setup() {
+  pinMode(A0, INPUT);
+  pinMode(8, OUTPUT);
+  Serial.begin(9600);
+  lcd.begin(16, 2);
+  lcd.print("Gas Level: ");
+}
+
+void loop() {
+  gas_lvl = analogRead(A0);
+  
+  lcd.setCursor(12, 0);
+  lcd.print(gas_lvl);
+  lcd.setCursor(0, 1);
+  if(gas_lvl<125){
+    lcd.print("      Safe      ");
+    digitalWrite(8, LOW);
+  }else if(gas_lvl>125 && gas_lvl<145){
+  	lcd.print(" Slight Leakage ");
+    digitalWrite(8, LOW);
+  }else{  	
+  	digitalWrite(8, HIGH);
+    lcd.print("    Critical    ");
+  }
+}
+```
 
 ## Output:
 
-   
+ 
+
+https://github.com/user-attachments/assets/9f82493f-8e32-40f3-96db-65f8818319ec
+
+  
 
 ## Result:
 
+thus the required gas detection output to verfied successfully.
